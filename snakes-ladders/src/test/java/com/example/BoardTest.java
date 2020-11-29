@@ -42,4 +42,15 @@ public class BoardTest {
         assertTrue(winner.isPresent());
         assertEquals(2, winner.get().getId());
     }
+
+    @Test
+    public void shouldUpdatePlayerPositionToSnakeEndPositionWhenPlayerReachesSnakeStartPosition(){
+        Board board = new Board(100);
+        board.registerPlayer(new Player(1));
+        board.registerSnake(new Snake(10, 5));
+
+        board.updatePlayer(1, 10);
+        Player player = board.players().stream().filter(player1 -> player1.getId() == 1).findFirst().orElseGet(() -> new Player(0));
+        assertEquals(5, player.getCurrentPosition());
+    }
 }

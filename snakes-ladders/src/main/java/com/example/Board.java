@@ -10,6 +10,7 @@ public class Board {
     private State state;
     private Set<Player> players = new HashSet<>();
     private Player winner;
+    private Set<Snake> snakes = new HashSet<>();
 
     public Board(int size) {
         this.size = size;
@@ -33,7 +34,12 @@ public class Board {
                 .peek(player -> player.setCurrentPosition(player.getCurrentPosition() + asInt))
                 .filter(player -> player.getCurrentPosition() <= size)
                 .findFirst()
-                .ifPresent(player -> players.add(player));
+                .ifPresent(player -> snakes.stream().filter(snake -> snake.start == player.getCurrentPosition())
+                        .findAny()
+                        .ifPresent(snake -> {
+                            player.setCurrentPosition(snake.end);
+                            players.add(player);
+                        }));
         updateState();
     }
 
@@ -50,5 +56,9 @@ public class Board {
 
     public Optional<Player> winner() {
         return Optional.ofNullable(winner);
+    }
+
+    public void registerSnake(Snake snake) {
+        snakes.add(snake);
     }
 }
