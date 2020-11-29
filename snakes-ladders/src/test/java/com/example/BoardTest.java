@@ -1,6 +1,6 @@
 package com.example;
 
-import com.example.util.Dice;
+import com.example.util.NormalDice;
 import org.junit.Test;
 
 import java.util.Optional;
@@ -27,7 +27,7 @@ public class BoardTest {
     public void shouldUpdatePlayerPositionWhenDiceIsRolled(){
         Board board = new Board(100);
         board.registerPlayer(new Player(1));
-        int number = Dice.roll();
+        int number = new NormalDice().roll();
         board.updatePlayer(1, number);
         Player player = board.players().stream().filter(player1 -> player1.getId() == 1).findFirst().orElseGet(() -> new Player(0));
         assertEquals(number, player.getCurrentPosition());

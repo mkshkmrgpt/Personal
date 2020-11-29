@@ -29,9 +29,9 @@ public class Board {
         players.add(player);
     }
 
-    public void updatePlayer(int id, int asInt) {
+    public void updatePlayer(int id, int diceNumber) {
         players.stream().filter(player -> player.getId() == id)
-                .peek(player -> player.setCurrentPosition(player.getCurrentPosition() + asInt))
+                .peek(player -> player.setCurrentPosition(player.getCurrentPosition() + diceNumber))
                 .filter(player -> player.getCurrentPosition() <= size)
                 .findFirst()
                 .ifPresent(player -> snakes.stream().filter(snake -> snake.start == player.getCurrentPosition())
@@ -45,7 +45,7 @@ public class Board {
 
     private void updateState() {
         if (state.equals(State.NOT_STARTED)) {
-            state = state.STARTED;
+            state = State.STARTED;
         }
         players.stream().filter(player -> player.getCurrentPosition() == size)
                 .findFirst().ifPresent(player -> {
