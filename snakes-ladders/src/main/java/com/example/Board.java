@@ -61,4 +61,14 @@ public class Board {
     public void registerSnake(Snake snake) {
         snakes.add(snake);
     }
+
+    public void status() {
+        if (winner == null) {
+            System.out.println("Game has " + state);
+            players.forEach(player -> System.out.println("Player " + player.getId() + " is at " + player.getCurrentPosition()));
+            return;
+        }
+        System.out.println("Winner is :  " + winner.getId());
+        System.out.println("Game has " + state);
+    }
 }

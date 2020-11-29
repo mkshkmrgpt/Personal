@@ -41,6 +41,7 @@ public class BoardTest {
         Optional<Player> winner = board.winner();
         assertTrue(winner.isPresent());
         assertEquals(2, winner.get().getId());
+        board.status();
     }
 
     @Test
@@ -52,5 +53,6 @@ public class BoardTest {
         board.updatePlayer(1, 10);
         Player player = board.players().stream().filter(player1 -> player1.getId() == 1).findFirst().orElseGet(() -> new Player(0));
         assertEquals(5, player.getCurrentPosition());
+        board.status();
     }
 }
