@@ -1,0 +1,20 @@
+###########
+# PROJECT #
+###########
+*.settings/
+*.project
+*.classpath
+*log
+**/target/
+*.iml
+
+########
+# IDEA #
+########
+/.idea/*
+
+nbactions.xml
+/jar/nbproject/
+INIFILE*
+TokenDetails*
+**.DS_Store
