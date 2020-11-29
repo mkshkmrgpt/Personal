@@ -2,7 +2,7 @@ package com.example.util;
 
 import java.util.Random;
 
-public class EvenDice implements DiceStrategy{
+public class EvenDice implements Dice {
 
     @Override
     public int roll() {

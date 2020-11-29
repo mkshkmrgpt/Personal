@@ -1,5 +1,5 @@
 package com.example.util;
 
-public interface DiceStrategy {
+public interface Dice {
     int roll();
 }
